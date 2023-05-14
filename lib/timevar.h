@@ -35,7 +35,7 @@ extern "C" {
    system.
 
    Timing variables are defined using the DEFTIMEVAR macro in
-   timevar.def.  Each has an enumeral identifier, used when referring
+   timevar.def.  Each has an enumeration identifier, used when referring
    to the timing variable in code, and a character string name.
 
    Timing variables can be used in two ways:
