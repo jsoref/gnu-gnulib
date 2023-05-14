@@ -206,7 +206,7 @@ class CompositeParser(ExprParser):
             if 'typedef' in cur:
                 name = re.sub(r'.*}\s*(\w+);$', r'\1', cur)
             else:
-                name= '<anoymous>'
+                name= '<anonymous>'
 
         ctype = found.group(1)
 
