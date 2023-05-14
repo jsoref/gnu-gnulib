@@ -71,7 +71,7 @@ set_binary_mode (int fd, int mode)
 }
 #endif
 
-/* This macro is obsolescent.  */
+/* This macro is obsolete.  */
 #define SET_BINARY(fd) ((void) set_binary_mode (fd, O_BINARY))
 
 _GL_INLINE_HEADER_END

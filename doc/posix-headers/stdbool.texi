@@ -30,7 +30,7 @@ Portability problems not fixed by Gnulib:
 @item
 @samp{_Bool} cannot be used before @code{<stdbool.h>} is included, or if
 the program is intended to be compiled by a C++ compiler.
-(With the advent of C23, @samp{_Bool} is obsolescent anyway.)
+(With the advent of C23, @samp{_Bool} is obsolete anyway.)
 @item
 You cannot assume that @code{_Bool} is a typedef; it might be a macro.
 For example, C23 allows @code{_Bool} to be a macro.

@@ -159,7 +159,7 @@ __xstrtol (const char *s, char **ptr, int strtol_base,
                 break;
 
               case 'B':
-              case 'D': /* 'D' is obsolescent */
+              case 'D': /* 'D' is obsolete */
                 base = 1000;
                 suffixes++;
                 break;
@@ -173,7 +173,7 @@ __xstrtol (const char *s, char **ptr, int strtol_base,
           break;
 
         case 'B':
-          /* This obsolescent first suffix is distinct from the 'B'
+          /* This obsolete first suffix is distinct from the 'B'
              second suffix above.  E.g., 'tar -L 1000B' means change
              the tape after writing 1000 KiB of data.  */
           overflow = bkm_scale (&tmp, 1024);
