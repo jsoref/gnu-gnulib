@@ -299,7 +299,7 @@ INTERNAL (strtol) (const STRING_TYPE *nptr, STRING_TYPE **endptr,
   else if (base == 0)
     base = 10;
 
-  /* Save the pointer so we can check later if anything happend.  */
+  /* Save the pointer so we can check later if anything happened.  */
   save = s;
 
 #ifdef USE_NUMBER_GROUPING
@@ -348,7 +348,7 @@ INTERNAL (strtol) (const STRING_TYPE *nptr, STRING_TYPE **endptr,
         }
     }
 
-  /* Check if anything actually happend.  */
+  /* Check if anything actually happened.  */
   if (s == save)
     goto noconv;
 

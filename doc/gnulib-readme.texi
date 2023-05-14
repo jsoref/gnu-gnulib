@@ -75,7 +75,7 @@ git resources:
 
 When you use @code{git annotate} or @code{git blame} with Gnulib, it's
 recommended that you use the @option{-w} option, in order to ignore
-massive whitespace changes that happend in 2009.
+massive whitespace changes that happened in 2009.
 
 @node Keeping Up-to-date
 @section Keeping Up-to-date
