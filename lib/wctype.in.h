@@ -510,7 +510,7 @@ _GL_FUNCDECL_RPL (iswxdigit, int, (wint_t wc));
       function will look only at the lower 16 bits.  This is allowed according
       to POSIX.
    2. The return value is returned in the lower 16 bits of the result register.
-      The upper 16 bits are random: whatever happend to be in that part of the
+      The upper 16 bits are random: whatever happened to be in that part of the
       result register.  We need to fix this by adding a zero-extend from
       wchar_t to wint_t after the call.  */
 
