@@ -5,7 +5,7 @@
 # gives unlimited permission to copy and/or distribute it,
 # with or without modifications, as long as this notice is preserved.
 
-# Autoconf defines AC_FUNC_FNMATCH, but that is obsolescent.
+# Autoconf defines AC_FUNC_FNMATCH, but that is obsolete.
 # New applications should use the macros below instead.
 
 # Request a POSIX compliant fnmatch function.

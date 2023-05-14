@@ -9,7 +9,7 @@
 
 #serial 12
 
-# Autoconf defines AC_FUNC_GETLOADAVG, but that is obsolescent.
+# Autoconf defines AC_FUNC_GETLOADAVG, but that is obsolete.
 # New applications should use gl_GETLOADAVG instead.
 
 # gl_GETLOADAVG

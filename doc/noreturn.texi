@@ -33,7 +33,7 @@ The @code{_Noreturn} keyword.  No modules are needed, as Gnulib
 arranges for @code{<config.h>} to define @code{_Noreturn} to an
 appropriate replacement on platforms lacking it.
 Unfortunately, although this approach works for all current C versions,
-the @code{_Noreturn} keyword is obsolescent in C23.
+the @code{_Noreturn} keyword is obsolete in C23.
 
 @item
 The @samp{noreturn} module.  It provides a way to put this declaration
