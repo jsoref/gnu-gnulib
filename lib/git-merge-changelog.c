@@ -1006,7 +1006,7 @@ usage (int status)
       --split-merged-entry    Possibly split a merged entry between paragraphs.\n\
                               Use this if you have the habit to merge unrelated\n\
                               entries into a single one, separated only by a\n\
-                              newline, just because they happened on the same\n\
+                              newline, just because they happend on the same\n\
                               date.\n");
       printf ("\n");
       #endif

@@ -381,7 +381,7 @@ class GLTestDir(object):
         subdirs = [sourcebase, m4base]
         subdirs_with_configure_ac = list()
 
-        testsbase_appened = False
+        testsbase_append = False
         inctests = self.config.checkInclTestCategory(TESTS['tests'])
         if inctests:
             directory = joinpath(self.testdir, testsbase)
@@ -505,7 +505,7 @@ class GLTestDir(object):
                 subdirs_with_configure_ac += [testsbase]
 
             subdirs += [testsbase]
-            testsbase_appened = True
+            testsbase_append = True
 
         # Create Makefile.am.
         emit = '## Process this file with automake to produce Makefile.in.\n\n'
