@@ -649,7 +649,7 @@ class Frontend:
     def consolidate_tree_blocks(self, tree):
         ''' Consolidate common macro conditional blocks.
 
-        Get macro conditional blocks at the same level but scatterred across the
+        Get macro conditional blocks at the same level but scattered across the
         file together into a single common block to allow for better comparison.
         '''
         # Nothing to do for non-nesting blocks.
