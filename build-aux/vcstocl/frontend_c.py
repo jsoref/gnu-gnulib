@@ -457,7 +457,7 @@ class Frontend:
         ''' Parse a preprocessor directive.
 
         In case a preprocessor condition (i.e. if/elif/else), create a new code
-        block to nest code into and in other cases, identify and add entities suchas
+        block to nest code into and in other cases, identify and add entities such as
         include files, defines, etc.
 
         - OP is the string array for the file
