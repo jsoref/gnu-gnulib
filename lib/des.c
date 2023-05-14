@@ -76,7 +76,7 @@
  *     unsigned char recoverd[8];
  *     gl_3des_ctx context;
  *
- *     // If you would like to use two 64bit keys, fill 'key1' and'key2'
+ *     // If you would like to use two 64bit keys, fill 'key1' and 'key2'
  *     // then setup the encryption context:
  *     gl_3des_set2keys(&context, key1, key2);
  *
