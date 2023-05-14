@@ -172,7 +172,7 @@ typedef DWORD (WINAPI *PNtQueryInformationFile)
 static int
 windows_compute_revents (HANDLE h, int *p_sought)
 {
-  int i, ret, happened;
+  int i, ret, happend;
   INPUT_RECORD *irbuffer;
   DWORD avail, nbuffer;
   BOOL bRet;
@@ -192,14 +192,14 @@ windows_compute_revents (HANDLE h, int *p_sought)
           once_only = TRUE;
         }
 
-      happened = 0;
+      happend = 0;
       if (PeekNamedPipe (h, NULL, 0, NULL, &avail, NULL) != 0)
         {
           if (avail)
-            happened |= *p_sought & (POLLIN | POLLRDNORM);
+            happend |= *p_sought & (POLLIN | POLLRDNORM);
         }
       else if (GetLastError () == ERROR_BROKEN_PIPE)
-        happened |= POLLHUP;
+        happend |= POLLHUP;
 
       else
         {
@@ -220,9 +220,9 @@ windows_compute_revents (HANDLE h, int *p_sought)
               || fpli.WriteQuotaAvailable >= PIPE_BUF
               || (fpli.OutboundQuota < PIPE_BUF &&
                   fpli.WriteQuotaAvailable == fpli.OutboundQuota))
-            happened |= *p_sought & (POLLOUT | POLLWRNORM | POLLWRBAND);
+            happend |= *p_sought & (POLLOUT | POLLWRNORM | POLLWRBAND);
         }
-      return happened;
+      return happend;
 
     case FILE_TYPE_CHAR:
       ret = WaitForSingleObject (h, 0);
@@ -271,10 +271,10 @@ windows_compute_revents (HANDLE h, int *p_sought)
 static int
 windows_compute_revents_socket (SOCKET h, int sought, long lNetworkEvents)
 {
-  int happened = 0;
+  int happend = 0;
 
   if ((lNetworkEvents & (FD_READ | FD_ACCEPT | FD_CLOSE)) == FD_ACCEPT)
-    happened |= (POLLIN | POLLRDNORM) & sought;
+    happend |= (POLLIN | POLLRDNORM) & sought;
 
   else if (lNetworkEvents & (FD_READ | FD_ACCEPT | FD_CLOSE))
     {
@@ -287,24 +287,24 @@ windows_compute_revents_socket (SOCKET h, int sought, long lNetworkEvents)
       WSASetLastError (0);
 
       if (r > 0 || error == WSAENOTCONN)
-        happened |= (POLLIN | POLLRDNORM) & sought;
+        happend |= (POLLIN | POLLRDNORM) & sought;
 
       /* Distinguish hung-up sockets from other errors.  */
       else if (r == 0 || error == WSAESHUTDOWN || error == WSAECONNRESET
                || error == WSAECONNABORTED || error == WSAENETRESET)
-        happened |= POLLHUP;
+        happend |= POLLHUP;
 
       else
-        happened |= POLLERR;
+        happend |= POLLERR;
     }
 
   if (lNetworkEvents & (FD_WRITE | FD_CONNECT))
-    happened |= (POLLOUT | POLLWRNORM | POLLWRBAND) & sought;
+    happend |= (POLLOUT | POLLWRNORM | POLLWRBAND) & sought;
 
   if (lNetworkEvents & FD_OOB)
-    happened |= (POLLPRI | POLLRDBAND) & sought;
+    happend |= (POLLPRI | POLLRDBAND) & sought;
 
-  return happened;
+  return happend;
 }
 
 #else /* !MinGW */
@@ -313,7 +313,7 @@ windows_compute_revents_socket (SOCKET h, int sought, long lNetworkEvents)
 static int
 compute_revents (int fd, int sought, fd_set *rfds, fd_set *wfds, fd_set *efds)
 {
-  int happened = 0;
+  int happend = 0;
   if (FD_ISSET (fd, rfds))
     {
       int r;
@@ -334,33 +334,33 @@ compute_revents (int fd, int sought, fd_set *rfds, fd_set *wfds, fd_set *efds)
       socket_errno = (r < 0) ? errno : 0;
 # endif
       if (r == 0)
-        happened |= POLLHUP;
+        happend |= POLLHUP;
 
-      /* If the event happened on an unconnected server socket,
+      /* If the event happend on an unconnected server socket,
          that's fine. */
       else if (r > 0 || ( /* (r == -1) && */ socket_errno == ENOTCONN))
-        happened |= (POLLIN | POLLRDNORM) & sought;
+        happend |= (POLLIN | POLLRDNORM) & sought;
 
       /* Distinguish hung-up sockets from other errors.  */
       else if (socket_errno == ESHUTDOWN || socket_errno == ECONNRESET
                || socket_errno == ECONNABORTED || socket_errno == ENETRESET)
-        happened |= POLLHUP;
+        happend |= POLLHUP;
 
       /* some systems can't use recv() on non-socket, including HP NonStop */
       else if (socket_errno == ENOTSOCK)
-        happened |= (POLLIN | POLLRDNORM) & sought;
+        happend |= (POLLIN | POLLRDNORM) & sought;
 
       else
-        happened |= POLLERR;
+        happend |= POLLERR;
     }
 
   if (FD_ISSET (fd, wfds))
-    happened |= (POLLOUT | POLLWRNORM | POLLWRBAND) & sought;
+    happend |= (POLLOUT | POLLWRNORM | POLLWRBAND) & sought;
 
   if (FD_ISSET (fd, efds))
-    happened |= (POLLPRI | POLLRDBAND) & sought;
+    happend |= (POLLPRI | POLLRDBAND) & sought;
 
-  return happened;
+  return happend;
 }
 #endif /* !MinGW */
 
@@ -583,7 +583,7 @@ restart:
   nhandles = 1;
   for (i = 0; i < nfd; i++)
     {
-      int happened;
+      int happend;
 
       if (pfd[i].fd < 0)
         continue;
@@ -608,18 +608,18 @@ restart:
           if (FD_ISSET ((SOCKET) h, &xfds))
             ev.lNetworkEvents |= FD_OOB;
 
-          happened = windows_compute_revents_socket ((SOCKET) h, pfd[i].events,
+          happend = windows_compute_revents_socket ((SOCKET) h, pfd[i].events,
                                                      ev.lNetworkEvents);
         }
       else
         {
           /* Not a socket.  */
           int sought = pfd[i].events;
-          happened = windows_compute_revents (h, &sought);
+          happend = windows_compute_revents (h, &sought);
           nhandles++;
         }
 
-       if ((pfd[i].revents |= happened) != 0)
+       if ((pfd[i].revents |= happend) != 0)
         rc++;
     }
 

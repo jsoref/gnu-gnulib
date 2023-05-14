@@ -37,7 +37,7 @@
 
    asyncsafe_spin_lock/unlock use pthread_sigmask, to ensure that while a thread
    is executing such code, no signal handler will start such code for the same
-   lock *in the same thread* (because if this happened, the signal handler would
+   lock *in the same thread* (because if this happend, the signal handler would
    hang!).  */
 
 #include <signal.h>

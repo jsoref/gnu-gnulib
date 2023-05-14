@@ -374,7 +374,7 @@ hash_string (const char *string, size_t n_buckets)
 /* This one comes from 'recode', and performs a bit better than the above as
    per a few experiments.  It is inspired from a hashing routine found in the
    very old Cyber 'snoop', itself written in typical Greg Mansfield style.
-   (By the way, what happened to this excellent man?  Is he still alive?)  */
+   (By the way, what happend to this excellent man?  Is he still alive?)  */
 
 size_t
 hash_string (const char *string, size_t n_buckets)
