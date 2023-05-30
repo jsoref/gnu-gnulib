@@ -939,7 +939,7 @@ struct callback_locals
 {
   uintptr_t address;
   struct vma_struct *vma;
-  /* The stack appears as multiple adjacents segments, therefore we
+  /* The stack appears as multiple adjacent segments, therefore we
      merge adjacent segments.  */
   uintptr_t curr_start, curr_end;
 # if STACK_DIRECTION < 0
@@ -1050,7 +1050,7 @@ struct callback_locals
 {
   uintptr_t address;
   struct vma_struct *vma;
-  /* The stack appears as multiple adjacents segments, therefore we
+  /* The stack appears as multiple adjacent segments, therefore we
      merge adjacent segments.  */
   uintptr_t curr_start, curr_end;
 # if STACK_DIRECTION < 0
@@ -2160,7 +2160,7 @@ struct callback_locals
 {
   uintptr_t address;
   struct vma_struct *vma;
-  /* The stack appears as three adjacents segments, therefore we
+  /* The stack appears as three adjacent segments, therefore we
      merge adjacent segments.  */
   uintptr_t curr_start, curr_end;
 # if STACK_DIRECTION < 0
